@@ -15,16 +15,16 @@ jobs:
   screenshots:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: install puppeteer-headful
       uses: mujo-code/puppeteer-headful@master
       env:
         CI: 'true'
     - name: screenshots-ci-action
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: ${{ github.event.inputs.url }}
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-screenshots
@@ -57,17 +57,17 @@ jobs:
   screenshots:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: install puppeteer-headful
       uses: mujo-code/puppeteer-headful@master
       env:
         CI: 'true'
     - name: screenshots-ci-action
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: ${{ github.event.inputs.url }}
         devices: ${{ github.event.inputs.devices }}
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-screenshots
@@ -93,28 +93,28 @@ jobs:
   screenshots:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: install puppeteer-headful
       uses: mujo-code/puppeteer-headful@master
       env:
         CI: 'true'
     - name: screenshots-url1-action
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: ${{ github.event.inputs.url1 }}
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-url1-screenshots
     - run: rm ./screenshots/*
 
     - name: screenshots-url2-action
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: ${{ github.event.inputs.url2 }}
         devices: iPhone 6,iPhone 6 landscape
         noDesktop: true
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-url2-screenshots

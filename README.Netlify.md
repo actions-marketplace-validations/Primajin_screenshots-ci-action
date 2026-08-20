@@ -63,16 +63,16 @@ jobs:
       id: waitFor200
       with:
         site_name: netlify_SITE_NAME
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: install puppeteer-headful
       uses: mujo-code/puppeteer-headful@master
       env:
         CI: 'true'
     - name: screenshots-ci-action
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: ${{ steps.waitFor200.outputs.url }}
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-screenshots
@@ -106,7 +106,7 @@ jobs:
         id: waitFor200
         with:
           site_name: netlify_SITE_NAME
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     ...
        with:
          url: ${{ steps.waitFor200.outputs.url }}

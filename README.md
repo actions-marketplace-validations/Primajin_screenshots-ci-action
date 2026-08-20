@@ -1,6 +1,14 @@
 # screenshots-ci-action
 Generate a website screenshots in different viewpoint, devices.
 
+> **Maintained fork** of [`flameddd/screenshots-ci-action`](https://github.com/flameddd/screenshots-ci-action).
+> Runs on the **Node 20** action runtime with **puppeteer v24**. This fixes a
+> bug in the original (puppeteer 14) where `fullPage: false` was ignored for
+> emulated mobile devices and the whole scrollable page was captured anyway —
+> viewport screenshots now behave as documented. Releases are managed with
+> [release-please](https://github.com/googleapis/release-please); pin a major
+> version with `Primajin/screenshots-ci-action@v3`.
+
 ## Parameters
 | Name(type) | required(default) | Description |
 | ------------- | ------------- | ------------- |
@@ -55,17 +63,17 @@ jobs:
   screenshots:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: install puppeteer-headful
       uses: mujo-code/puppeteer-headful@master # Required for headful puppeteer
       env:
         CI: 'true'
     - name: screenshots-ci-action
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: https://github.com
         devices: iPhone 6,iPhone 6 landscape,Nexus 7,Pad Pro,Galaxy S III landscape,iPad Pro landscape
-    - uses: actions/upload-artifact@v2 # Uplaod screenshots to Actions Artifacts via actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4 # Uplaod screenshots to Actions Artifacts via actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-screenshots
@@ -84,18 +92,18 @@ jobs:
   screenshots:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: install puppeteer-headful
       uses: mujo-code/puppeteer-headful@master
       env:
         CI: 'true'
     - name: screenshots-ci-action
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: https://github.com
         devices: iPhone 6,iPhone 6 landscape
         noDesktop: true
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-screenshots
@@ -116,28 +124,28 @@ jobs:
   screenshots:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: install puppeteer-headful
       uses: mujo-code/puppeteer-headful@master
       env:
         CI: 'true'
     - name: screenshots-desktop-facebook
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: https://www.facebook.com/
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-desktop-screenshots # Put URL1 screenshots into Download-desktop-screenshots
     - run: rm ./screenshots/* # Remove URL1 files
 
     - name: screenshots-mobile-facebook
-      uses: flameddd/screenshots-ci-action@master
+      uses: Primajin/screenshots-ci-action@v3
       with:
         url: https://m.facebook.com/
         devices: iPhone 6,iPhone 6 landscape
         noDesktop: true
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       with:
         path: screenshots
         name: Download-mobile-screenshots # Put URL2 screenshots into Download-desktop-screenshots
