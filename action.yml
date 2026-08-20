@@ -1,5 +1,5 @@
 name: "Multi-Device Website Screenshots CI"
-description: "Capture desktop & multi-device website screenshots in CI (puppeteer v24) — upload as artifacts, post to a PR comment, or send to Telegram."
+description: "Capture desktop and multi-device website screenshots in CI: save as artifacts, post to PR comments, or send to Telegram."
 author: "Primajin"
 branding:
   icon: 'camera'
