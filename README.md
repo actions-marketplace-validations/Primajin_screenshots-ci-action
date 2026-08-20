@@ -1,13 +1,34 @@
-# screenshots-ci-action
-Generate a website screenshots in different viewpoint, devices.
+# Multi-Device Website Screenshots CI
 
-> **Maintained fork** of [`flameddd/screenshots-ci-action`](https://github.com/flameddd/screenshots-ci-action).
-> Runs on the **Node 20** action runtime with **puppeteer v24**. This fixes a
-> bug in the original (puppeteer 14) where `fullPage: false` was ignored for
-> emulated mobile devices and the whole scrollable page was captured anyway —
-> viewport screenshots now behave as documented. Releases are managed with
-> [release-please](https://github.com/googleapis/release-please); pin a major
-> version with `Primajin/screenshots-ci-action@v3`.
+Capture screenshots of any website — desktop **and** dozens of emulated mobile
+devices — right inside your GitHub Actions workflow. Save them as build
+artifacts, post them straight into a pull-request comment, or send them to a
+Telegram chat.
+
+[![Release](https://img.shields.io/github/v/release/Primajin/screenshots-ci-action?sort=semver&label=release)](https://github.com/Primajin/screenshots-ci-action/releases)
+[![Runtime](https://img.shields.io/badge/runtime-node20-brightgreen?logo=node.js&logoColor=white)](action.yml)
+[![puppeteer](https://img.shields.io/badge/puppeteer-v24-40b5a4?logo=puppeteer)](https://pptr.dev/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+> **A maintained, modernized fork** of
+> [`flameddd/screenshots-ci-action`](https://github.com/flameddd/screenshots-ci-action)
+> (last released 2022). If you're weighing the two, here's what this fork brings:
+>
+> - 🐛 **`fullPage: false` actually works.** The original bundles puppeteer 14,
+>   which ignored `fullPage: false` for emulated mobile devices and captured the
+>   whole scrollable page anyway (a single iPad Pro shot came out ~25 000 px
+>   tall). This fork runs **puppeteer v24**, so viewport screenshots behave as
+>   documented.
+> - 🟢 **Current runtime.** Runs on the **Node 20** action runtime; the original
+>   still targets the end-of-life `node16`.
+> - 📱 **Up-to-date device list** via puppeteer's `KnownDevices`.
+> - 🚀 **Actively released** with
+>   [release-please](https://github.com/googleapis/release-please) — pin a stable
+>   major with `Primajin/screenshots-ci-action@v3`.
+>
+> Same inputs and outputs as the original, so it's a drop-in replacement:
+> just swap `flameddd/screenshots-ci-action@master` for
+> `Primajin/screenshots-ci-action@v3`.
 
 ## Parameters
 | Name(type) | required(default) | Description |
