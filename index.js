@@ -16,7 +16,7 @@ const DEFAULT_DESKTOP_VIEWPOINT_RATIO = [
 ];
 
 const DEFAULT_TYPE = 'jpeg';
-const deviceNames = Object.keys(puppeteer.devices);
+const deviceNames = Object.keys(puppeteer.KnownDevices);
 const PATH = process.env.GITHUB_WORKSPACE
   ? `${process.env.GITHUB_WORKSPACE}/screenshots/`
   : `screenshots/`;
@@ -201,7 +201,7 @@ async function run() {
           ? `${mobilePath}.${screenshotType}`
           : `${mobilePath}-${POST_FIX}.${screenshotType}`;
 
-        await page.emulate(puppeteer.devices[`${includedDevices[index]}`]);
+        await page.emulate(puppeteer.KnownDevices[`${includedDevices[index]}`]);
 
         await page.goto(url, { waitUntil });
         // wait for page element when config has element selector
