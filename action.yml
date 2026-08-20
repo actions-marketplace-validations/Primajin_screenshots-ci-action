@@ -1,9 +1,9 @@
-name: "screenshots-ci-action"
-description: "Screenshot a website with different viewpoints"
-author: "JackyHu <flameddd@hotmail.com>"
+name: "Multi-Device Website Screenshots CI"
+description: "Capture desktop & multi-device website screenshots in CI (puppeteer v24) — upload as artifacts, post to a PR comment, or send to Telegram."
+author: "Primajin"
 branding:
-  icon: 'monitor'
-  color: 'blue'
+  icon: 'camera'
+  color: 'green'
 inputs:
   url:
     required: true
