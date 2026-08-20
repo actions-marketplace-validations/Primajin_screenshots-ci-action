@@ -6,7 +6,7 @@ artifacts, post them straight into a pull-request comment, or send them to a
 Telegram chat.
 
 [![Release](https://img.shields.io/github/v/release/Primajin/screenshots-ci-action?sort=semver&label=release)](https://github.com/Primajin/screenshots-ci-action/releases)
-[![Runtime](https://img.shields.io/badge/runtime-node20-brightgreen?logo=node.js&logoColor=white)](action.yml)
+[![Runtime](https://img.shields.io/badge/runtime-node24-brightgreen?logo=node.js&logoColor=white)](action.yml)
 [![puppeteer](https://img.shields.io/badge/puppeteer-v24-40b5a4?logo=puppeteer)](https://pptr.dev/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -19,8 +19,8 @@ Telegram chat.
 >   whole scrollable page anyway (a single iPad Pro shot came out ~25 000 px
 >   tall). This fork runs **puppeteer v24**, so viewport screenshots behave as
 >   documented.
-> - 🟢 **Current runtime.** Runs on the **Node 20** action runtime; the original
->   still targets the end-of-life `node16`.
+> - 🟢 **Current runtime.** Runs on the **Node 24** action runtime (latest LTS);
+>   the original still targets the end-of-life `node16`.
 > - 📱 **Up-to-date device list** via puppeteer's `KnownDevices`.
 > - 🚀 **Actively released** with
 >   [release-please](https://github.com/googleapis/release-please) — pin a stable
@@ -195,13 +195,87 @@ jobs:
 - width: 1280px, height: 720px
 - width: 1920px, height: 1080px
 
-### Supported mobile devices options
-- ref: https://github.com/puppeteer/puppeteer/blob/main/docs/api/puppeteer.knowndevices.md
+### Supported mobile devices
 
-||||
-| :--- | :--- | :--- |
-|'iPhone 4'<br />'iPhone 4 landscape'<br />'iPhone 5'<br />'iPhone 5 landscape'<br />'iPhone 6'<br />'iPhone 6 landscape'<br />'iPhone 6 Plus'<br />'iPhone 6 Plus landscape'<br />'iPhone 7'<br />'iPhone 7 landscape'<br />'iPhone 7 Plus'<br />'iPhone 7 Plus landscape'<br />'iPhone 8'<br />'iPhone 8 landscape'<br />'iPhone 8 Plus'<br />'iPhone 8 Plus landscape'<br />'iPhone SE'<br />'iPhone SE landscape'<br />'iPhone X'<br />'iPhone X landscape'<br />'iPhone XR'<br />'iPhone XR landscape'<br />'iPhone 11'<br />'iPhone 11 landscape'<br />'iPhone 11 Pro'<br />'iPhone 11 Pro landscape'<br />'iPhone 11 Pro Max'<br />'iPhone 11 Pro Max landscape'<br />'iPhone 12'<br />'iPhone 12 landscape'<br />'iPhone 12 Pro'<br />'iPhone 12 Pro landscape'<br />'iPhone 12 Pro Max'<br />'iPhone 12 Pro Max landscape'<br />'iPhone 12 Mini'<br />'iPhone 12 Mini landscape'<br />'iPhone 13'<br />'iPhone 13 landscape'<br />'iPhone 13 Pro'<br />'iPhone 13 Pro landscape'<br />'iPhone 13 Pro Max'<br />'iPhone 13 Pro Max landscape'<br />'iPhone 13 Mini'<br />'iPhone 13 Mini landscape'<br />|'iPad'<br />'iPad landscape'<br />'iPad (gen 6)'<br />'iPad (gen 6) landscape'<br />'iPad (gen 7)'<br />'iPad (gen 7) landscape'<br />'iPad Mini'<br />'iPad Mini landscape'<br />'iPad Pro'<br />'iPad Pro landscape'<br />'iPad Pro 11'<br />'iPad Pro 11 landscape'<br />|'Galaxy Note 3'<br />'Galaxy Note 3 landscape'<br />'Galaxy Note II'<br />'Galaxy Note II landscape'<br />'Galaxy S III'<br />'Galaxy S III landscape'<br />'Galaxy S5'<br />'Galaxy S5 landscape'<br />'Galaxy S8'<br />'Galaxy S8 landscape'<br />'Galaxy S9+'<br />'Galaxy S9+ landscape'<br />'Galaxy Tab S4'<br />'Galaxy Tab S4 landscape'<br />|
-|'Pixel 2'<br />'Pixel 2 landscape'<br />'Pixel 2 XL'<br />'Pixel 2 XL landscape'<br />'Pixel 3'<br />'Pixel 3 landscape'<br />'Pixel 4'<br />'Pixel 4 landscape'<br />'Pixel 4a (5G)'<br />'Pixel 4a (5G) landscape'<br />'Pixel 5'<br />'Pixel 5 landscape'<br />|'Nexus 4'<br />'Nexus 4 landscape'<br />'Nexus 5'<br />'Nexus 5 landscape'<br />'Nexus 5X'<br />'Nexus 5X landscape'<br />'Nexus 6'<br />'Nexus 6 landscape'<br />'Nexus 6P'<br />'Nexus 6P landscape'<br />'Nexus 7'<br />'Nexus 7 landscape'<br />'Nokia Lumia 520'<br />'Nokia Lumia 520 landscape'<br />'Nokia N9'<br />'Nokia N9 landscape'<br />'Nexus 10'<br />'Nexus 10 landscape'<br />|'Blackberry PlayBook'<br />'BlackBerry Z30'<br />'BlackBerry Z30 landscape'<br /><br />'JioPhone 2'<br />'JioPhone 2 landscape'<br />'Kindle Fire HDX'<br />'Kindle Fire HDX landscape'<br />'LG Optimus L70'<br />'LG Optimus L70 landscape'<br />'Microsoft Lumia 550'<br />'Microsoft Lumia 950'<br />'Microsoft Lumia 950 landscape'<br />'Moto G4'<br />'Moto G4 landscape'<br />|
+The `devices` input accepts any name from puppeteer's
+[`KnownDevices`](https://pptr.dev/api/puppeteer.knowndevices). Pass the base
+name for portrait, or append ` landscape` for the landscape orientation
+(e.g. `iPad Pro landscape`). puppeteer's list is the source of truth and is
+kept current by upgrading puppeteer in this fork.
+
+<details>
+<summary>All 66 base devices (as of puppeteer v24 — 131 orientations)</summary>
+
+`Blackberry PlayBook`
+`BlackBerry Z30`
+`Galaxy Note 3`
+`Galaxy Note II`
+`Galaxy S III`
+`Galaxy S5`
+`Galaxy S8`
+`Galaxy S9+`
+`Galaxy Tab S4`
+`iPad`
+`iPad (gen 6)`
+`iPad (gen 7)`
+`iPad Mini`
+`iPad Pro`
+`iPad Pro 11`
+`iPhone 4`
+`iPhone 5`
+`iPhone 6`
+`iPhone 6 Plus`
+`iPhone 7`
+`iPhone 7 Plus`
+`iPhone 8`
+`iPhone 8 Plus`
+`iPhone SE`
+`iPhone X`
+`iPhone XR`
+`iPhone 11`
+`iPhone 11 Pro`
+`iPhone 11 Pro Max`
+`iPhone 12`
+`iPhone 12 Pro`
+`iPhone 12 Pro Max`
+`iPhone 12 Mini`
+`iPhone 13`
+`iPhone 13 Pro`
+`iPhone 13 Pro Max`
+`iPhone 13 Mini`
+`iPhone 14`
+`iPhone 14 Plus`
+`iPhone 14 Pro`
+`iPhone 14 Pro Max`
+`iPhone 15`
+`iPhone 15 Plus`
+`iPhone 15 Pro`
+`iPhone 15 Pro Max`
+`JioPhone 2`
+`Kindle Fire HDX`
+`LG Optimus L70`
+`Microsoft Lumia 550`
+`Microsoft Lumia 950`
+`Nexus 10`
+`Nexus 4`
+`Nexus 5`
+`Nexus 5X`
+`Nexus 6`
+`Nexus 6P`
+`Nexus 7`
+`Nokia Lumia 520`
+`Nokia N9`
+`Pixel 2`
+`Pixel 2 XL`
+`Pixel 3`
+`Pixel 4`
+`Pixel 4a (5G)`
+`Pixel 5`
+`Moto G4`
+
+Append ` landscape` to any of the above for its landscape variant.
+
+</details>
 
 ## Result examples
 ### desktop (600x450)
