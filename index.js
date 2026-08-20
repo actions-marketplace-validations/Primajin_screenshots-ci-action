@@ -131,13 +131,27 @@ async function run() {
     }
 
     // 3. Launch puppeteer
-
-    const launchOptions = !process.env.GITHUB_SHA
-      ? {}
-      : {
-          executablePath: 'google-chrome-stable',
-          args: ['--no-sandbox'],
-        };
+    //
+    // In CI (GITHUB_SHA set) we need a Chrome and the --no-sandbox flag. Prefer
+    // an explicit PUPPETEER_EXECUTABLE_PATH / CHROME_BIN if the workflow set
+    // one; otherwise let puppeteer locate the system-installed Chrome via its
+    // release channel. (Older versions of this action hardcoded the bare name
+    // "google-chrome-stable" as executablePath, which puppeteer >= v20 rejects
+    // because it is not an absolute path.) Outside CI, fall back to puppeteer's
+    // own bundled browser.
+    const explicitPath =
+      process.env.PUPPETEER_EXECUTABLE_PATH || process.env.CHROME_BIN || '';
+    let launchOptions = {};
+    if (process.env.GITHUB_SHA) {
+      launchOptions = { args: ['--no-sandbox'] };
+      if (explicitPath) {
+        launchOptions.executablePath = explicitPath;
+      } else {
+        launchOptions.channel = 'chrome';
+      }
+    } else if (explicitPath) {
+      launchOptions = { executablePath: explicitPath };
+    }
     browser = await puppeteer.launch(launchOptions);
 
     const desktopPage = await browser.newPage();
